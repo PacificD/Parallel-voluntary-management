@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "YRDZST";
+  src: url(assets/fonts/YRDZST-Light.ttf);
+}
+
+@font-face {
+  font-family: "Ubuntu-Light";
+  src: url(assets/fonts/Ubuntu-Light.ttf);
+}
+
+@font-face {
+  font-family: "Ubuntu-Medium";
+  src: url(assets/fonts/Ubuntu-Medium.ttf);
+}
+
+@font-face {
+  font-family: "Ubuntu-Bold";
+  src: url(assets/fonts/Ubuntu-Bold.ttf);
+}
+
+/* global variables */
+:root {
+  /* color */
+  --primary: #ff6700;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+/* global styles */
+body {
+  font-size: 14px;
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+}
+
+h2 {
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+/* utility class */
+/* Fonts */
+.font-cn {
+  font-family: "YRDZST";
+}
+
+.font-ulight {
+  font-family: "Ubuntu-Light";
+}
+
+.font-uMedium {
+  font-family: "Ubuntu-Medium";
+}
+
+.font-uBold {
+  font-family: "Ubuntu-Bold";
+}
+/* box */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

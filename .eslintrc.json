@@ -1,0 +1,87 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ],
+        "semi": [
+          2,
+          "never"
+        ],
+        "quotes": [
+          2,
+          "double"
+        ],
+        "no-console": 0,
+        "comma-dangle": [
+          2,
+          "never"
+        ],
+        "space-before-function-paren": [
+          0,
+          "always"
+        ],
+        "no-unused-expressions": [
+          0,
+          {
+            "allowShortCircuit": true,
+            "allowTernary": true
+          }
+        ],
+        "func-names": 0,
+        "prefer-const": 0,
+        "no-extend-native": 2,
+        "no-continue": 0,
+        "global-require": 1,
+        "camelcase": 2
+      }
+    }
+  ]
+}

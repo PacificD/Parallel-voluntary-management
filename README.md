@@ -25,6 +25,13 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:3000/`. The appli
 
 - Run `ng generate component component-name` to generate a new component.
 - `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Add Dependency: `ng add ___`
+
+### Lint
+
+Run `ng lint`
+
+Run and fix the problems: `ng lint --fix`
 
 ### Build
 
@@ -41,3 +48,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Todo
+
+- [ ] Add 404 page for wildcard route.
+
+  { path: '\*\*', component: PageNotFoundComponent }
+
+- [ ] Router animation
