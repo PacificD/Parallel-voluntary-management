@@ -1,0 +1,45 @@
+#auth-page {
+  display: flex;
+  background-image: url("/assets/bg-light.jpg");
+  background-position: center;
+  object-fit: cover;
+}
+
+#auth-page .left {
+  flex: 1;
+  background-color: #edf1f4;
+  justify-content: center;
+}
+
+#auth-page .left > img {
+  margin-top: 32px;
+  width: 72%;
+}
+
+#auth-page .left > h2 {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0.4rem 0;
+  padding: 0 8rem;
+  color: var(--gray-800);
+}
+
+#auth-page .left > h2:nth-child(1) {
+}
+
+#auth-page .left > h2:nth-child(2) {
+  margin-left: 12rem;
+}
+
+#auth-page .right {
+  flex: 1;
+  background-color: rgb(255 255 255 / 40%);
+  backdrop-filter: blur(52px);
+  justify-content: center;
+}
+
+#auth-page .right > h2 {
+  font-size: 2rem;
+  color: var(--gray-700);
+  font-weight: 600;
+}
