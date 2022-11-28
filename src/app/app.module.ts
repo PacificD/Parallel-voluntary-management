@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { AuthComponent } from "./auth/auth.component"
 import { ComponentsModule } from "./common/components/components.module"
 import { DevUIModule } from "ng-devui"
+import { HttpClientModule } from "@angular/common/http"
 
 export const playerFactory: LottiePlayerFactoryOrLoader = () => player
 @NgModule({
@@ -28,6 +29,7 @@ export const playerFactory: LottiePlayerFactoryOrLoader = () => player
     BrowserAnimationsModule,
     DevUIModule,
     FormsModule,
+    HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
     ComponentsModule
   ],

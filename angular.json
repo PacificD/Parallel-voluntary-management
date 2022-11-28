@@ -24,7 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "css",
             "assets": ["src/fav.png", "src/assets"],
-            "styles": ["src/style.css", "node_modules/ng-devui/devui.min.css"],
+            "styles": [
+              "src/style.css",
+              "node_modules/ng-devui/devui.min.css",
+              "node_modules/@devui-design/icons/icomoon/devui-icon.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -82,7 +86,11 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "css",
             "assets": ["src/fav.png", "src/assets"],
-            "styles": ["src/styles.css", "node_modules/ng-devui/devui.min.css"],
+            "styles": [
+              "src/styles.css",
+              "node_modules/ng-devui/devui.min.css",
+              "node_modules/@devui-design/icons/icomoon/devui-icon.css"
+            ],
             "scripts": []
           }
         },

@@ -1,7 +1,7 @@
 <!--
  * @Author: Pacific_D
  * @Date: 2022-11-25 15:46:09
- * @LastEditTime: 2022-11-27 22:45:14
+ * @LastEditTime: 2022-11-28 22:20:32
  * @LastEditors: Pacific_D
  * @Description: 
  * @FilePath: \Parallel-voluntary-management\src\app\auth\auth.component.html
@@ -12,78 +12,89 @@
     <h2 @fadeInLeft class="font-cn">欢迎来到</h2>
     <h2 @fadeInRight class="font-cn">平行志愿管理系统</h2>
     <div @fadeIn>
-      <ng-lottie [options]="options"></ng-lottie>
+      <ng-lottie [options]="animationOptions"></ng-lottie>
     </div>
   </section>
   <!-- Right section -->
   <section class="right flex-col">
     <h2 @fadeIn class="">管理员登录</h2>
-    <app-button></app-button>
-    <section class="demo-section">
-      <d-toast [value]="msgs"></d-toast>
-      <div>
-        <form
-          dForm
-          ngForm
-          [dValidateRules]="formRules['rule']"
-          [layout]="layoutDirection"
-          #userForm="dValidateRules"
-          (dSubmit)="submitForm($event)"
-        >
-          <d-form-item>
-            <d-form-label [required]="true">Username</d-form-label>
-            <d-form-control>
-              <input
-                dTextInput
-                autocomplete="off"
-                name="username"
-                placeholder="Enter a user name you like"
-                [(ngModel)]="formData.userName"
-                [dValidateRules]="formRules['usernameRules']"
-              />
-            </d-form-control>
-          </d-form-item>
-          <d-form-item>
-            <d-form-label [required]="true">Password</d-form-label>
-            <d-form-control>
-              <input
-                dTextInput
-                dValidateSyncKey="password"
-                type="password"
-                name="password"
-                [(ngModel)]="formData.password"
-                placeholder="Enter a password of 6 to 15 characters"
-                [dValidateRules]="formRules['passwordRules']"
-              />
-            </d-form-control>
-          </d-form-item>
-          <d-form-item>
-            <d-form-label [required]="true">Confirm Password</d-form-label>
-            <d-form-control>
-              <input
-                dTextInput
-                dValidateSyncKey="password"
-                type="password"
-                name="confirmPassword"
-                [(ngModel)]="formData.confirmPassword"
-                placeholder="Confirm and enter"
-                [dValidateRules]="formRules['confirmPasswordRules']"
-              />
-            </d-form-control>
-          </d-form-item>
-          <d-form-operation>
-            <d-button
-              class="mr-element-spacing"
-              [title]="userForm.errorMessage || ''"
-              circled="true"
-              style="margin-right: 8px"
-              dFormSubmit
-              >Register</d-button
-            >
-            <d-button bsStyle="common" circled="true" dFormReset>Reset</d-button>
-          </d-form-operation>
-        </form>
-      </div>
-    </section>
+    <d-toast [value]="msgs"></d-toast>
+    <form
+      id="auth-form"
+      dForm
+      ngForm
+      [dValidateRules]="formRules['rule']"
+      [layout]="layoutDirection"
+      #userForm="dValidateRules"
+      (dSubmit)="submitForm($event)"
+    >
+      <d-form-item>
+        <d-form-control class="auth-control">
+          <i class="icon icon-add-member"></i>
+          <input
+            dTextInput
+            autocomplete="off"
+            name="username"
+            placeholder="请输入账户"
+            [(ngModel)]="formData.userName"
+            [dValidateRules]="formRules['usernameRules']"
+          />
+        </d-form-control>
+      </d-form-item>
+      <d-form-item>
+        <d-form-control class="auth-control">
+          <i class="icon icon-add-interface-use-case"></i>
+          <input
+            dTextInput
+            dValidateSyncKey="password"
+            type="password"
+            name="password"
+            [(ngModel)]="formData.password"
+            placeholder="请输入密码"
+            [dValidateRules]="formRules['passwordRules']"
+          />
+        </d-form-control>
+      </d-form-item>
+      <d-form-item>
+        <d-form-control>
+          <div class="auth-control auth-code-control flex">
+            <i class="icon icon-go-cloud-ide"></i>
+            <input
+              dTextInput
+              name="code"
+              [(ngModel)]="formData.code"
+              placeholder="请输入验证码"
+              class="code-input"
+            />
+            <div id="v_container" (click)="refresh()" style="width: 100px">
+              <canvas
+                #verifyCanvas
+                id="verifyCanvas"
+                width="100"
+                height="40"
+                style="cursor: pointer"
+              ></canvas>
+              <a (click)="refresh($event)">看不清？</a>
+            </div>
+          </div>
+        </d-form-control>
+      </d-form-item>
+
+      <d-form-operation class="form-bottom">
+        <div class="flex">
+          <d-button
+            class="mr-element-spacing form-button"
+            [title]="userForm.errorMessage || ''"
+            circled="true"
+            bsSize="lg"
+            [bordered]="false"
+            style="margin-right: 8px"
+            dFormSubmit
+            >Login</d-button
+          >
+          <d-button bsSize="lg" [bordered]="false" bsStyle="text" dFormReset>Reset</d-button>
+        </div>
+      </d-form-operation>
+    </form>
   </section>
 </main>
