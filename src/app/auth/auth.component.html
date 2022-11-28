@@ -1,7 +1,7 @@
 <!--
  * @Author: Pacific_D
  * @Date: 2022-11-25 15:46:09
- * @LastEditTime: 2022-11-28 22:20:32
+ * @LastEditTime: 2022-11-28 22:54:12
  * @LastEditors: Pacific_D
  * @Description: 
  * @FilePath: \Parallel-voluntary-management\src\app\auth\auth.component.html
@@ -19,6 +19,7 @@
   <section class="right flex-col">
     <h2 @fadeIn class="">管理员登录</h2>
     <d-toast [value]="msgs"></d-toast>
+    <!-- login form -->
     <form
       id="auth-form"
       dForm
@@ -27,7 +28,9 @@
       [layout]="layoutDirection"
       #userForm="dValidateRules"
       (dSubmit)="submitForm($event)"
+      @fadeInBottom
     >
+      <!-- username field -->
       <d-form-item>
         <d-form-control class="auth-control">
           <i class="icon icon-add-member"></i>
@@ -41,6 +44,7 @@
           />
         </d-form-control>
       </d-form-item>
+      <!-- passwod field -->
       <d-form-item>
         <d-form-control class="auth-control">
           <i class="icon icon-add-interface-use-case"></i>
@@ -55,6 +59,7 @@
           />
         </d-form-control>
       </d-form-item>
+      <!-- captcha field -->
       <d-form-item>
         <d-form-control>
           <div class="auth-control auth-code-control flex">
@@ -79,7 +84,7 @@
           </div>
         </d-form-control>
       </d-form-item>
-
+      <!-- submit form -->
       <d-form-operation class="form-bottom">
         <div class="flex">
           <d-button

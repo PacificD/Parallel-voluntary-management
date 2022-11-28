@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 15:46:09
- * @LastEditTime: 2022-11-28 22:34:34
+ * @LastEditTime: 2022-11-28 22:58:17
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\auth\auth.component.ts
@@ -12,7 +12,7 @@ import { of } from "rxjs"
 import { delay, map } from "rxjs/operators"
 import { AnimationOptions } from "ngx-lottie"
 import fadeIn from "../common/animations/fadeIn"
-import { fadeInLeft, fadeInRight } from "./auth.animation"
+import { fadeInBottom, fadeInLeft, fadeInRight } from "./auth.animation"
 import { Message } from "ng-devui"
 import { getAllLetter, randomColor, randomNum } from "../common/utils"
 
@@ -20,7 +20,7 @@ import { getAllLetter, randomColor, randomNum } from "../common/utils"
   selector: "app-auth",
   templateUrl: "./auth.component.html",
   styleUrls: ["./auth.component.css"],
-  animations: [fadeInLeft, fadeInRight, fadeIn()]
+  animations: [fadeInLeft, fadeInRight, fadeInBottom, fadeIn()]
 })
 export class AuthComponent implements AfterViewInit {
   animationOptions: AnimationOptions = {
