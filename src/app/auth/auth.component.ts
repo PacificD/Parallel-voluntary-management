@@ -1,21 +1,27 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 15:46:09
- * @LastEditTime: 2022-11-28 22:58:17
+ * @LastEditTime: 2022-12-03 12:15:40
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\auth\auth.component.ts
  */
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core"
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core"
 import { DValidateRules, FormLayout } from "ng-devui/form"
-import { of } from "rxjs"
-import { delay, map } from "rxjs/operators"
 import { AnimationOptions } from "ngx-lottie"
 import fadeIn from "../common/animations/fadeIn"
 import { fadeInBottom, fadeInLeft, fadeInRight } from "./auth.animation"
-import { Message } from "ng-devui"
-import { getAllLetter, randomColor, randomNum } from "../common/utils"
+import { LoadingService, Message } from "ng-devui"
+import { CaptchaOptions, generateCaptcha, getAllLetter } from "../common/utils"
+import { HttpClient } from "@angular/common/http"
+import { Result } from "../common/types"
+import { AppService } from "../app.service"
+import { Router } from "@angular/router"
 
+type SubmitFormParams = {
+  valid: boolean
+  directive: unknown
+}
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
@@ -23,26 +29,25 @@ import { getAllLetter, randomColor, randomNum } from "../common/utils"
   animations: [fadeInLeft, fadeInRight, fadeInBottom, fadeIn()]
 })
 export class AuthComponent implements AfterViewInit {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly appService: AppService,
+    private readonly router: Router,
+    private readonly loadingService: LoadingService
+  ) {}
+
   animationOptions: AnimationOptions = {
     path: "/assets/course.json"
   }
-  randomNum = randomNum
-  randomColor = randomColor
   getAllLetter = getAllLetter
 
   // captcha
-  ctx: any
-  codeLength = 4 // 设置验证码长度
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  @ViewChild("verifyCanvas") verifyCanvas: ElementRef
+  ctx?: CanvasRenderingContext2D
+  codeLength = 4 // 验证码长度
 
-  options: Record<"id" | "canvasId" | "type" | "code", string> & {
-    width: number
-    height: number
-    numArr: string[]
-    letterArr: string[]
-  } = {
+  @ViewChild("verifyCanvas") verifyCanvas?: ElementRef
+
+  options: CaptchaOptions = {
     // 默认options参数值
     id: "v_container", // 容器Id
     canvasId: "verifyCanvas", // canvas的ID
@@ -61,75 +66,27 @@ export class AuthComponent implements AfterViewInit {
     this.refresh()
   }
 
-  // 生成验证码
+  /**
+   * @description: genearte new captcha
+   * @param {MouseEvent} e?
+   * @return {null}
+   */
   refresh(e?: MouseEvent) {
     if (e) e.stopPropagation()
     this.options.code = ""
-    this.ctx.textBaseline = "middle"
-
-    this.ctx.fillStyle = this.randomColor(180, 240)
-    this.ctx.fillRect(0, 0, this.options.width, this.options.height)
-
-    let txtArr = []
-    if (this.options.type === "blend") {
-      // 判断验证码类型
-      txtArr = this.options.numArr.concat(this.options.letterArr)
-    } else if (this.options.type === "number") {
-      txtArr = this.options.numArr
-    } else {
-      txtArr = this.options.letterArr
-    }
-
-    for (let i = 1; i <= this.codeLength; i++) {
-      const txt = txtArr[this.randomNum(0, txtArr.length)]
-      this.options.code += txt
-      this.ctx.font = this.randomNum(this.options.height / 2, this.options.height) + "px SimHei" // 随机生成字体大小
-      this.ctx.fillStyle = this.randomColor(50, 160) // 随机生成字体颜色
-      this.ctx.shadowOffsetX = this.randomNum(-3, 3)
-      this.ctx.shadowOffsetY = this.randomNum(-3, 3)
-      this.ctx.shadowBlur = this.randomNum(-3, 3)
-      this.ctx.shadowColor = "rgba(0, 0, 0, 0.3)"
-      const x = (this.options.width / (this.codeLength + 1)) * i
-      const y = this.options.height / 2
-      const deg = this.randomNum(-30, 30)
-      // 设置旋转角度和坐标原点
-      this.ctx.translate(x, y)
-      this.ctx.rotate((deg * Math.PI) / 180)
-      this.ctx.fillText(txt, 0, 0)
-      // 恢复旋转角度和坐标原点
-      this.ctx.rotate((-deg * Math.PI) / 180)
-      this.ctx.translate(-x, -y)
-    }
-    // 绘制干扰线
-    for (let i = 0; i < 2; i++) {
-      this.ctx.strokeStyle = this.randomColor(40, 180)
-      this.ctx.beginPath()
-      this.ctx.moveTo(this.randomNum(0, this.options.width), this.randomNum(0, this.options.height))
-      this.ctx.lineTo(this.randomNum(0, this.options.width), this.randomNum(0, this.options.height))
-      this.ctx.stroke()
-    }
-    // 绘制干扰点
-    for (let i = 0; i < this.options.width / 2; i++) {
-      this.ctx.fillStyle = this.randomColor(0, 255)
-      this.ctx.beginPath()
-      this.ctx.arc(
-        this.randomNum(0, this.options.width),
-        this.randomNum(0, this.options.height),
-        1,
-        0,
-        2 * Math.PI
-      )
-      this.ctx.fill()
-    }
+    generateCaptcha(this.options, this.ctx!, this.codeLength)
   }
 
-  // 验证验证码
+  /**
+   * @description: validate captcha
+   * @param {string} code
+   * @return {boolean}
+   */
   validate(code: string) {
     const code1 = code.toLowerCase()
     const v_code = this.options.code.toLowerCase()
-    if (code1 === v_code) {
-      return true
-    } else {
+    if (code1 === v_code) return true
+    else {
       this.refresh()
       return false
     }
@@ -171,21 +128,41 @@ export class AuthComponent implements AfterViewInit {
     }
   }
 
-  submitForm({ valid, directive }: any) {
-    // do something for submitting
-    if (valid) {
-      of(this.formData)
-        .pipe(
-          map(val => "success"),
-          delay(500)
-        )
-        .subscribe(res => {
-          if (res === "success") {
-            this.showToast("success", "Success", "Login succeeded.")
-          }
-        })
-    } else {
-      this.showToast("error", "Error", "Check whether all validation items pass.")
+  /**
+   * @description: Login
+   * @param {SubmitFormParams} defaultParams
+   * @return {null}
+   */
+  submitForm({ valid }: SubmitFormParams) {
+    if (!this.formData.userName || !this.formData.password) return
+    if (!this.validate(this.formData.code)) {
+      this.showToast("error", "Fail", "验证码错误！")
+      this.formData.code = ""
+      return
     }
+    // submitting
+    if (valid) {
+      const loading = this.loadingService.open()
+      const loginParams = {
+        username: this.formData.userName,
+        password: this.formData.password
+      }
+      this.http.post<Result>("user/login", loginParams).subscribe(res => {
+        loading.loadingInstance.close()
+        switch (res["code"]) {
+          case 52002:
+            this.showToast("error", "Error", "用户名或密码错误！")
+            break
+          case 200:
+            this.showToast("success", "Success", "登陆成功！")
+            this.appService.login()
+            this.router.navigate(["/system/examinee"])
+            break
+          default:
+            this.showToast("error", "Error", "Internal server error!")
+            break
+        }
+      })
+    } else this.showToast("error", "Error", "Check whether all validation items pass.")
   }
 }
