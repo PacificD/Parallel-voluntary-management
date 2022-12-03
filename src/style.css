@@ -21,7 +21,8 @@
 /* global variables */
 :root {
   /* color */
-  --primary: #0f1221;
+  --primary: #2c303b;
+  --background: #f4f5fa;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -34,8 +35,13 @@
   --gray-900: #111827;
   --red-100: #fac6bb;
   --red-300: #f3846c;
+  --red-700: #f74b5c;
   --green-50: #33cc99;
-  --light-blue: #0263fd;
+  --green-100: #28d094;
+  --orange: #ff9149;
+  --light-blue: #1e9ff2;
+  /* others */
+  --sideBar-width: 12rem;
 }
 
 /* global styles */
@@ -53,6 +59,12 @@ h2 {
   font-size: 2.8rem;
   letter-spacing: 3px;
   margin: 0;
+}
+
+.system {
+  width: calc(100vw - var(--sideBar-width));
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 /* utility class */
