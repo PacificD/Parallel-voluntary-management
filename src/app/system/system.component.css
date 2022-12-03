@@ -1,0 +1,24 @@
+#system-page {
+  justify-content: space-between;
+}
+
+.side-bar {
+  width: 12rem;
+  height: 100%;
+  background-color: var(--primary);
+  user-select: none;
+  color: var(--gray-100);
+}
+
+.menu-item {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  color: var(--gray-300);
+  cursor: pointer;
+}
+
+#activated-item {
+  background-color: var(--light-blue);
+}
