@@ -1,13 +1,13 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-29 22:10:32
- * @LastEditTime: 2022-12-03 15:41:58
+ * @LastEditTime: 2022-12-03 16:10:32
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\system\system.component.ts
  */
 import { Component } from "@angular/core"
-import { ChildrenOutletContexts, Router } from "@angular/router"
+import { Router } from "@angular/router"
 
 type MenuItem = Record<"name" | "path" | "icon", string>
 
@@ -44,7 +44,7 @@ const menu = new Map<number, MenuItem>([
   styleUrls: ["./system.component.css"]
 })
 export class SystemComponent {
-  constructor(private readonly router: Router, private contexts: ChildrenOutletContexts) {}
+  constructor(private readonly router: Router) {}
 
   activatedItem = 0
   menu = menu
@@ -54,9 +54,5 @@ export class SystemComponent {
     this.activatedItem = idx
     const target = "/system/" + this.menu.get(idx)?.path
     this.router.navigate([target])
-  }
-
-  getRouteAnimationData() {
-    return this.contexts.getContext("primary")?.route?.snapshot?.data?.["animation"]
   }
 }
