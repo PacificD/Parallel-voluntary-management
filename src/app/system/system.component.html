@@ -1,7 +1,7 @@
 <!--
  * @Author: Pacific_D
  * @Date: 2022-11-29 22:10:32
- * @LastEditTime: 2022-12-03 12:14:48
+ * @LastEditTime: 2022-12-03 15:41:45
  * @LastEditors: Pacific_D
  * @Description: 
  * @FilePath: \Parallel-voluntary-management\src\app\system\system.component.html
@@ -9,14 +9,17 @@
 <main class="page flex" id="system-page">
   <section class="side-bar flex-col">
     <h1 class="font-cn">志愿管理系统</h1>
+    <p></p>
     <div
       *ngFor="let item of menuItems; let idx = index"
-      class="menu-item"
+      class="menu-item flex"
       (click)="setActivate(idx)"
       [id]="activatedItem === idx ? 'activated-item' : ''"
     >
-      {{ item }}
+      <i [class]="menu.get(idx)?.icon"></i>
+      <span class="font-cn">{{ item }}</span>
     </div>
   </section>
+
   <router-outlet></router-outlet>
 </main>

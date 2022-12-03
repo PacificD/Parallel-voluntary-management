@@ -3,11 +3,22 @@
 }
 
 .side-bar {
-  width: 12rem;
+  width: var(--sideBar-width);
   height: 100%;
+  padding: 1rem 0;
   background-color: var(--primary);
   user-select: none;
   color: var(--gray-100);
+}
+
+.side-bar p {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.side-bar h1 {
+  font-size: 1.6rem;
+  letter-spacing: 1px;
 }
 
 .menu-item {
@@ -17,8 +28,18 @@
   font-size: 1.2rem;
   color: var(--gray-300);
   cursor: pointer;
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  background-color: #2d3b5e;
+  transition: all 0.4s;
 }
 
 #activated-item {
   background-color: var(--light-blue);
+}
+
+.menu-item > span {
+  margin-left: 0.6rem;
 }
