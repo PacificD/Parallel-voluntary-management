@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 11:14:06
- * @LastEditTime: 2022-11-27 22:33:34
+ * @LastEditTime: 2022-12-03 11:55:16
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\app.module.ts
@@ -19,10 +19,13 @@ import { AuthComponent } from "./auth/auth.component"
 import { ComponentsModule } from "./common/components/components.module"
 import { DevUIModule } from "ng-devui"
 import { HttpClientModule } from "@angular/common/http"
+import { httpInterceptorProviders } from "./http"
+import { SystemComponent } from "./system/system.component";
+import { AnalysisComponent } from './analysis/analysis.component'
 
 export const playerFactory: LottiePlayerFactoryOrLoader = () => player
 @NgModule({
-  declarations: [AppComponent, AuthComponent],
+  declarations: [AppComponent, AuthComponent, SystemComponent, AnalysisComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +36,7 @@ export const playerFactory: LottiePlayerFactoryOrLoader = () => player
     LottieModule.forRoot({ player: playerFactory }),
     ComponentsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
