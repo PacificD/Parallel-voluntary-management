@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-29 20:55:51
- * @LastEditTime: 2022-12-03 10:49:35
+ * @LastEditTime: 2022-12-03 15:50:31
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\guards\auth.guard.ts
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const cacheString = localStorage.getItem("mono"),
       decrptString = decrypt(cacheString ?? JSON.stringify(null)),
-      isLogin = JSON.parse(decrptString ?? "false")
+      isLogin = decrptString ?? false
     if (isLogin) {
       this.appService.isLogin = true
       return true
