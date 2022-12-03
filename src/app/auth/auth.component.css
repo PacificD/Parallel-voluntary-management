@@ -51,6 +51,7 @@
   width: 64%;
   background-color: var(--red-100);
   box-shadow: -2px 21px 53px rgba(0, 0, 0, 0.4);
+  user-select: none;
   border-radius: 1rem;
 }
 
