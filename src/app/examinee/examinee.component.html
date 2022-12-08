@@ -1,9 +1,18 @@
-<!--
- * @Author: Pacific_D
- * @Date: 2022-12-03 11:54:14
- * @LastEditTime: 2022-12-03 15:16:00
- * @LastEditors: Pacific_D
- * @Description: 
- * @FilePath: \Parallel-voluntary-management\src\app\examinee\examinee.component.html
--->
-<div class="system">examinee works!</div>
+<div class="system">
+  <d-data-table
+    #datatable
+    [dataSource]="basicDataSource"
+    [tableOverflowType]="'overlay'"
+    [scrollable]="true"
+  >
+    <d-column
+      *ngFor="let colOption of dataTableOptions.columns"
+      [field]="colOption.field"
+      [header]="colOption.header"
+      [fieldType]="colOption.fieldType"
+      [width]="'150px'"
+      [fixedLeft]="colOption?.fixedLeft || ''"
+    >
+    </d-column>
+  </d-data-table>
+</div>

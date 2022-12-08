@@ -18,13 +18,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { AuthComponent } from "./auth/auth.component"
 import { ComponentsModule } from "./common/components/components.module"
 import { DevUIModule } from "ng-devui"
+import { DataTableModule } from 'ng-devui/data-table';
 import { HttpClientModule } from "@angular/common/http"
 import { httpInterceptorProviders } from "./http"
 import { SystemComponent } from "./system/system.component"
+import { ExamineeComponent } from "./examinee/examinee.component"
 
 export const playerFactory: LottiePlayerFactoryOrLoader = () => player
 @NgModule({
-  declarations: [AppComponent, AuthComponent, SystemComponent],
+  declarations: [AppComponent, AuthComponent, SystemComponent,ExamineeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +35,8 @@ export const playerFactory: LottiePlayerFactoryOrLoader = () => player
     FormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
-    ComponentsModule
+    ComponentsModule,
+    DataTableModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
