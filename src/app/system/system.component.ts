@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-29 22:10:32
- * @LastEditTime: 2022-12-03 16:10:32
+ * @LastEditTime: 2022-12-19 15:40:05
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\system\system.component.ts
@@ -23,13 +23,21 @@ const menu = new Map<number, MenuItem>([
   [
     1,
     {
+      name: "招生计划",
+      path: "plan",
+      icon: "icon-classroom-approve"
+    }
+  ],
+  [
+    2,
+    {
       name: "模拟录取",
       path: "simulation",
       icon: "icon-merge-request2"
     }
   ],
   [
-    2,
+    3,
     {
       name: "数据分析",
       path: "analysis",

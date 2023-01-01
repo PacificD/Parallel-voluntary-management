@@ -1,0 +1,139 @@
+#plan-upload-container {
+  --plan-upload-height: calc(100vh - 555px);
+  width: 100%;
+  height: var(--plan-upload-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 32px;
+}
+
+#plan-upload-container .devui-add-images {
+  width: calc(var(--plan-upload-height));
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+#plan-upload-container .devui-upload {
+  border: 1px dashed gray;
+  border-radius: 2px;
+}
+
+#plan-upload-container .devui-upload:hover {
+  border-color: #0077ff;
+}
+
+#plan-upload-container .devui-upload-dropover {
+  border-color: #0077ff;
+}
+
+#plan-upload-container .icon-op-add {
+  font-size: 16px;
+  color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#plan-upload-container .devui-add-items {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  border: 1px solid $devui-line;
+  color: $devui-text;
+}
+
+#plan-upload-container .devui-add-items > * {
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#plan-upload-container .devui-add-items span {
+  text-align: center;
+}
+
+#plan-upload-container .devui-add-items .devui-cancel-upload {
+  display: block;
+  margin-top: 8px;
+}
+
+#plan-upload-container .devui-add-items .devui-cancel-upload:hover {
+  color: #ff6700;
+}
+#plan-upload-container .devui-add-items .filename {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 20%;
+}
+
+#plan-upload-container .devui-add-items .devui-loading {
+  top: 60%;
+}
+
+#plan-upload-container .devui-add-items .icon-file {
+  top: 20%;
+  font-size: 32px;
+}
+
+#plan-upload-container .devui-add-items .devui-upload-failed,
+#plan-upload-container .devui-add-items .devui-upload-success {
+  background-color: gray;
+  border-color: red;
+  color: orange;
+}
+
+#plan-upload-container .devui-add-items .devui-upload-failed .filename,
+#plan-upload-container .devui-add-items .devui-upload-success .filename {
+  top: 70%;
+}
+
+#plan-upload-container .devui-add-items .devui-upload-failed .icon-file,
+#plan-upload-container .devui-add-items .devui-upload-success .icon-file {
+  counter-reset: green;
+}
+
+#plan-upload-container .icon {
+  font-size: 16px;
+  color: black;
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#plan-upload-container .icon .icon-running {
+  left: 35%;
+}
+
+#plan-upload-container .icon .devui-failed-icon {
+  left: 60%;
+}
+
+#plan-upload-container .devui-add-images:hover .devui-upload-failed::before,
+#plan-upload-container .devui-add-images:hover .devui-upload-success::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: #000000;
+  opacity: 0.4;
+  z-index: 1;
+}
+#plan-upload-container .devui-add-images:hover .icon-delete,
+#plan-upload-container .devui-add-images:hover .icon-running {
+  display: block;
+  z-index: 2;
+}

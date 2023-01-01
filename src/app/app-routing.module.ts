@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 11:14:06
- * @LastEditTime: 2022-12-03 14:37:53
+ * @LastEditTime: 2022-12-19 15:41:29
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\app-routing.module.ts
@@ -13,6 +13,7 @@ import { AuthComponent } from "./auth/auth.component"
 import { ExamineeComponent } from "./examinee/examinee.component"
 import { AuthGuard } from "./guards/auth.guard"
 import { NotFoundComponent } from "./not-found/not-found.component"
+import { PlanComponent } from "./plan/plan.component"
 import { SimulationComponent } from "./simulation/simulation.component"
 import { SystemComponent } from "./system/system.component"
 
@@ -33,6 +34,11 @@ const routes: Routes = [
         path: "examinee",
         title: "考生数据 - 志愿管理系统",
         component: ExamineeComponent
+      },
+      {
+        path: "plan",
+        title: "招生计划 - 志愿管理系统",
+        component: PlanComponent
       },
       {
         path: "simulation",

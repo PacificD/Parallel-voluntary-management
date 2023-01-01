@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 11:14:06
- * @LastEditTime: 2022-12-03 14:38:17
+ * @LastEditTime: 2022-12-22 08:29:24
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\app.module.ts
@@ -18,15 +18,16 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { AuthComponent } from "./auth/auth.component"
 import { ComponentsModule } from "./common/components/components.module"
 import { DevUIModule } from "ng-devui"
-import { DataTableModule } from 'ng-devui/data-table';
+import { DataTableModule } from "ng-devui/data-table"
 import { HttpClientModule } from "@angular/common/http"
 import { httpInterceptorProviders } from "./http"
 import { SystemComponent } from "./system/system.component"
 import { ExamineeComponent } from "./examinee/examinee.component"
+import { PlanComponent } from "./plan/plan.component"
 
 export const playerFactory: LottiePlayerFactoryOrLoader = () => player
 @NgModule({
-  declarations: [AppComponent, AuthComponent, SystemComponent,ExamineeComponent],
+  declarations: [AppComponent, AuthComponent, SystemComponent, ExamineeComponent, PlanComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

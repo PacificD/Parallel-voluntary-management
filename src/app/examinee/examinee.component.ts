@@ -1,3 +1,11 @@
+/*
+ * @Author: Pacific_D
+ * @Date: 2022-12-08 14:26:58
+ * @LastEditTime: 2022-12-19 15:41:43
+ * @LastEditors: Pacific_D
+ * @Description:
+ * @FilePath: \Parallel-voluntary-management\src\app\examinee\examinee.component.ts
+ */
 import { Component } from "@angular/core"
 import { DialogService } from "ng-devui/modal"
 import { HttpClient } from "@angular/common/http"
@@ -71,15 +79,16 @@ export class ExamineeComponent {
       }
     ]
   }
-  constructor(private dialogService: DialogService, private readonly http: HttpClient) {
-  }
+  constructor(private dialogService: DialogService, private readonly http: HttpClient) {}
 
   ngOnInit() {
-    this.http.post<Result>("student/getAllStudent", {
-      pageNumber:1,
-      pageSize:3
-    }).subscribe(res=>{
-      console.log(res.data.list[0])
-    })
+    this.http
+      .post<Result>("student/getAllStudent", {
+        pageNumber: 1,
+        pageSize: 3
+      })
+      .subscribe(res => {
+        console.log(res.data.list[0])
+      })
   }
 }

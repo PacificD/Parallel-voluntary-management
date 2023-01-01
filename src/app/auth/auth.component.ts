@@ -1,7 +1,7 @@
 /*
  * @Author: Pacific_D
  * @Date: 2022-11-25 15:46:09
- * @LastEditTime: 2022-12-03 12:15:40
+ * @LastEditTime: 2022-12-03 16:23:02
  * @LastEditors: Pacific_D
  * @Description:
  * @FilePath: \Parallel-voluntary-management\src\app\auth\auth.component.ts
@@ -99,6 +99,7 @@ export class AuthComponent implements AfterViewInit {
     code: ""
   }
   layoutDirection: FormLayout = FormLayout.Vertical
+
   msgs: Array<Message> = []
   showToast(type: Message["severity"], title: string, msg: string) {
     this.msgs = [{ severity: type, summary: title, detail: msg }]
@@ -147,6 +148,7 @@ export class AuthComponent implements AfterViewInit {
         username: this.formData.userName,
         password: this.formData.password
       }
+
       this.http.post<Result>("user/login", loginParams).subscribe(res => {
         loading.loadingInstance.close()
         switch (res["code"]) {
